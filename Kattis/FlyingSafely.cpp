@@ -7,7 +7,7 @@ int main() {
 
 #ifdef LOCAL
     const string strPath = ".\\testcase\\";
-    const string strFile = "PaulEigon.02";
+    const string strFile = "FlyingSafely.01";
 
     string strInFile = strPath + strFile + ".in";
     string strOutFile = strPath + strFile + ".my.out";
@@ -15,11 +15,16 @@ int main() {
     freopen(strOutFile.c_str(), "w", stdout);
 #endif
 
-    int N, P, Q;
-    scanf("%d %d %d", &N, &P, &Q);
-    const char names[2][10] = {"paul", "opponent"};
-
-    int t = (P + Q) / N;
-    printf("%s", names[t & 0x01]);
+    int C, n, m;
+    int flag[1001];
+    string s;
+    scanf("%d\n", &C);
+    while(C--) {
+        scanf("%d %d\n", &n, &m);
+        while(m--) {
+            getline(cin, s);
+        }
+        printf("%d\n", n - 1);
+    }
     return 0;
 }

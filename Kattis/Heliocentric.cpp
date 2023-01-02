@@ -7,7 +7,7 @@ int main() {
 
 #ifdef LOCAL
     const string strPath = ".\\testcase\\";
-    const string strFile = "PaulEigon.02";
+    const string strFile = "Heliocentric.01";
 
     string strInFile = strPath + strFile + ".in";
     string strOutFile = strPath + strFile + ".my.out";
@@ -15,11 +15,16 @@ int main() {
     freopen(strOutFile.c_str(), "w", stdout);
 #endif
 
-    int N, P, Q;
-    scanf("%d %d %d", &N, &P, &Q);
-    const char names[2][10] = {"paul", "opponent"};
+    int E, M, c = 0;
+    int dm, i;
+    while(scanf("%d %d ", &E, &M) == 2) {
+        dm = (687 - M) % 687;
+        i = 0;
+        while((E + dm + i) % 365 > 0) {
+            i += 687;
+        }
+        printf("Case %d: %d\n", ++c, dm + i);
+    }
 
-    int t = (P + Q) / N;
-    printf("%s", names[t & 0x01]);
     return 0;
 }

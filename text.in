@@ -1,0 +1,1 @@
+Write a program to read content from a text file (text.in). Then, count how many alphabets in the text, and how many vowels (‘aeiou’ without case sensitivity) among them. Write the results in file ‘result.out’.

@@ -28,10 +28,13 @@ int main() {
     cin >> N;
     cin.ignore();
     while(N--) {
+        string song;
+        getline(cin, song);
+
         int bm_last = 0;
         memset(cnt, 0x00, sizeof(cnt));
-        char note;
-        while(cin.get(note), note != '\n') {
+        for(int i = 0; i < song.size(); i++) {
+            char note = song.at(i);
             int index = (note >= 'a' ? note - 'a' + 7 : note - 'A');
             int bm_cur = bitMap[index];
             // Any new fingers pressed?

@@ -30,7 +30,7 @@ private:
 
     void constructSA() {  // can go up to 400K chars
         SA.resize(n);
-        iota(SA.begin(), SA.end(), 0);  // the initial SA
+        iota(SA.begin(), SA.end(), 0);  // the initial SA, [0..n)
         RA.resize(n);
         for (int i = 0; i < n; ++i) RA[i] = T[i];  // initial rankings
         for (int k = 1; k < n; k <<= 1) {          // repeat log_2 n times

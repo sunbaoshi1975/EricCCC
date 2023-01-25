@@ -20,7 +20,7 @@ index = (index+1) % n;				// to right or back to 0
 index = (index+n-1) % n;			// to left or back to n-1
 
 // fast i/o
-#define fast_io()   ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
+#define FAST_IO    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
 
 freopen("XXXXX.in", "r", stdin);
 freopen("XXXXX.out", "w", stdout);

@@ -1,34 +1,21 @@
-/*  WA£¡£¡£¡ */
 #include<bits/stdc++.h>
 using namespace std;
-
-typedef long long ll;
 
 #define LOCAL
 
 // fast i/o
 #define FAST_IO    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
 
-struct clsComp {
-    bool operator() (ll lhs, ll rhs) const
-    { return(lhs > rhs); }
-};
-
-// height, position
-multimap<ll, long, clsComp> hs;
-
 struct hill {
-    long l;       // level
-    long j;       // jump
-    long n;      // next jump to
+    int h;      // height
+    int j;      // jumps
+    int n;      // next jump to
 };
-
-#define hit      multimap<ll, long>::iterator
 
 int main() {
 #ifdef LOCAL
     const string strPath = ".\\testcase\\";
-    const string strFile = "Couple Competition.07";
+    const string strFile = "Couple Competition.08";
 
     string strInFile = strPath + strFile + ".in";
     string strOutFile = strPath + strFile + ".my.out";
@@ -37,54 +24,47 @@ int main() {
 #endif
     FAST_IO;
 
-    long N;
+    int N;
     cin >> N;
     vector<hill> hl(N);
-    ll height, maxh = 0;
-    long maxi;
-    for(long i = 0; i < N; ++i) {
-        cin >> height;
-        hs.insert(pair<ll, long>(height, i));
-        hl[i].l = -1;
+    vector<int> peak;
+    int maxh = 0;
+    for(int i = 0; i < N; ++i) {
+        cin >> hl[i].h;
         hl[i].n = -1;
-        hl[i].j = N;
-        if(maxh < height) {
-            maxh = height;
-            maxi = i;
+        hl[i].j = N + 1;
+        if(maxh < hl[i].h) {
+            maxh = hl[i].h;
+            peak.clear();
+            peak.push_back(i);
+        } else if(maxh == hl[i].h) {
+            peak.push_back(i);
         }
     }
 
-    long level = 0;
-    long nx;
-    height = maxh;
-    for(hit it = hs.begin(); it != hs.end(); it++) {
-        // Level changed
-        if(height > it->first) {
-            level++;
-            height = it->first;
-        }
-        hl[it->second].l = level;
-        if(level == 0) hl[it->second].j = 0;
+    // mark peaks with 0 jump
+    for(int i = 0; i < peak.size(); ++i) {
+        hl[peak[i]].j = 0;
     }
 
     // spread from peaks
-    long k;
-    for(hit it = hs.begin(); it != hs.end() && it->first == maxh; it++) {
+    int nx, k;
+    for(int i = 0; i < peak.size(); ++i) {
         // left
-        if(it->second > 0) {
-            nx = it->second - 1;
+        if(peak[i] > 0) {
+            nx = peak[i] - 1;
             while(nx >= 0 && hl[nx].j > 0) {
                 // left to right jump
                 k = nx + 1;
-                while(k <= it->second) {
-                    if(hl[nx].l > hl[k].l) {
+                while(k <= peak[i]) {
+                    if(hl[nx].h < hl[k].h) {
                         if(hl[nx].j > hl[k].j + 1) {
                             hl[nx].j = hl[k].j + 1;
                             // jump to this node
                             hl[nx].n = k;
                         }
                         break;
-                    } else if(hl[nx].l == hl[k].l) {
+                    } else if(hl[nx].h == hl[k].h) {
                         if(hl[nx].j > hl[k].j) {
                             hl[nx].j = hl[k].j;
                             // same level -> jump to the same next node
@@ -100,20 +80,20 @@ int main() {
             }
         }
         // right
-        if(it->second < N - 1) {
-            nx = it->second + 1;
+        if(peak[i] < N - 1) {
+            nx = peak[i] + 1;
             while(nx < N && hl[nx].j > 0) {
                 // right to left jump
                 k = nx - 1;
-                while(k >= it->second) {
-                    if(hl[nx].l > hl[k].l) {
+                while(k >= peak[i]) {
+                    if(hl[nx].h < hl[k].h) {
                         if(hl[nx].j > hl[k].j + 1) {
                             hl[nx].j = hl[k].j + 1;
                             // jump to this node
                             hl[nx].n = k;
                         }
                         break;
-                    } else if(hl[nx].l == hl[k].l) {
+                    } else if(hl[nx].h == hl[k].h) {
                         if(hl[nx].j > hl[k].j) {
                             hl[nx].j = hl[k].j;
                             // same level -> jump to the same next node
@@ -130,7 +110,7 @@ int main() {
         }                               
     }
 
-    for(long i = 0; i < N; ++i) {
+    for(int i = 0; i < N; ++i) {
         cout << hl[i].j << " ";
     }
 

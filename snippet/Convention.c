@@ -26,6 +26,8 @@ freopen("XXXXX.in", "r", stdin);
 freopen("XXXXX.out", "w", stdout);
 
 #define LOCAL
+
+int main() {
 #ifdef LOCAL
     const string strPath = ".\\testcase\\";
     const string strFile = "XXXXX.01";
@@ -35,3 +37,7 @@ freopen("XXXXX.out", "w", stdout);
     freopen(strInFile.c_str(), "r", stdin);
     freopen(strOutFile.c_str(), "w", stdout);
 #endif
+    FAST_IO;
+
+    return 0;
+}

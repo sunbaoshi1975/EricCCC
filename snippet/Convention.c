@@ -23,10 +23,10 @@ index = (index+n-1) % n;			// to left or back to n-1
 #define LSOne(S)    ((S) & -(S))    // important speedup for DP
 
 #define BIT(n)                    ( 1<<(n) )
-#define BITTEST(var,pos)          (((var)>>(pos)) & 0x0001)
+#define BITTEST(var,pos)          ((var) & BIT(pos))
 #define BITSET(var,pos)           ((var) | BIT(pos))
 #define BITUNSET(var,pos)         ((var) & (~BIT(pos)))
-#define BITFLIP(var,pos)          ((var) & (~BIT(pos)))
+#define BITFLIP(var,pos)          ((var) ^ (~BIT(pos)))
 
 #define _BV(x)                    (1<<(x))
 

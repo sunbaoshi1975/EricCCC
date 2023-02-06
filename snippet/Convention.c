@@ -51,13 +51,13 @@ __builtin_popcountl()
 __builtin_ctz()
 __builtin_ctzl()
 
-// fast i/o
-#define FAST_IO    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
-
 freopen("XXXXX.in", "r", stdin);
 freopen("XXXXX.out", "w", stdout);
 
 #define LOCAL
+
+// fast i/o
+#define FAST_IO    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
 
 int main() {
 #ifdef LOCAL

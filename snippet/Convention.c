@@ -24,6 +24,7 @@ index = (index+n-1) % n;			// to left or back to n-1
 
 #define BIT(n)                    ( 1<<(n) )
 #define BITTEST(var,pos)          ((var) & BIT(pos))
+#define BITBOOL(var,pos)          (((var) & BIT(pos)) > 0)
 #define BITSET(var,pos)           ((var) | BIT(pos))
 #define BITUNSET(var,pos)         ((var) & (~BIT(pos)))
 #define BITFLIP(var,pos)          ((var) ^ (~BIT(pos)))

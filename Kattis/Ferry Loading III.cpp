@@ -8,7 +8,7 @@ using namespace std;
 
 // fast i/o
 #define FAST_IO    ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL)
-#define MAX_T      10010
+#define MAX_T      INT_MAX
 
 #define LOCAL
 
@@ -48,8 +48,10 @@ int main() {
             if(next[left] <= next[1 - left] && next[left] < MAX_T) {
                 if(time < next[left]) {
                     if(space < n) {
-                        time += (2 * t);
+                        time += t;
+                        left = 1 - left;
                         space = n;
+                        continue;
                     }
                     if(time < next[left]) time = next[left];
                 }

@@ -19,20 +19,20 @@ int main() {
 		int arr = INT_MAX, event_c = 0;
 		bool atleft = true;
 		int times[10000];
-		for (; !(event_c == event.size() && left.empty() && right.empty() && ship.empty());) {
-			if (event_c < (int)event.size() && event[event_c].first <= arr) {
+		while(!(event_c == event.size() && left.empty() && right.empty() && ship.empty())) {
+			if(event_c < (int)event.size() && event[event_c].first <= arr) {
 				(event[event_c].second ? left : right).push(event_c);
 				if (arr == INT_MAX) arr = event[event_c].first;
 				event_c++;
 			} else {
-				for (; !ship.empty();) {
+				while(!ship.empty()) {
 					times[ship.front()] = arr;
 					ship.pop();
 				}
-				if (left.empty() && right.empty()) arr = INT_MAX;
+				if(left.empty() && right.empty()) arr = INT_MAX;
 				else {
 				    queue<int>& curr = atleft ? left : right;
-					while (!curr.empty() && (int)ship.size() < n) {
+					while(!curr.empty() && (int)ship.size() < n) {
 						ship.push(curr.front());
 						curr.pop();
 					}
@@ -41,7 +41,7 @@ int main() {
 				}
 			}
 		}
-		for (int i = 0; i < event.size(); i++)
+		for(int i = 0; i < event.size(); i++)
 			cout << times[i] << endl;
 		if (c) cout << endl;
 	}

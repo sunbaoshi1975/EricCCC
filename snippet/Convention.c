@@ -15,7 +15,7 @@ vi memo(n, -1);						// alternative way
 
 const int INF = 1e9;
 const int LLINF = 4e18;
-const double EPS = 1e-9
+const double EPS = 1e-9;
 index = (index+1) % n;				// to right or back to 0
 index = (index+n-1) % n;			// to left or back to n-1
 
